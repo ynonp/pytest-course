@@ -92,6 +92,8 @@ X X X
     assert (game.__str__() == expected)
 
 def test_print_board_2(capsys):
+    # This test does not use the "game" fixture, and so it sometimes
+    # fails because game could start with player 2
     game = TicTacToeGame()
     game.play(0, 0)
     game.play(1, 1)
