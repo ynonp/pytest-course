@@ -1,11 +1,14 @@
 import numpy as np
-
+import random
 display = ['.', 'X', 'O']
 
 class TicTacToeGame:
     def __init__(self):
         self.board = np.zeros((3, 3), dtype=int)
-        self.player = 1
+        if random.randint(0, 100) > 50:
+            self.player = 1
+        else:
+            self.player = 2
 
     def play(self, row: int, column: int):
         if self.board[row, column] != 0:
