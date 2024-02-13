@@ -10,6 +10,14 @@ class TicTacToeGame:
         else:
             self.player = 2
 
+    def save(self, filename):
+        np.savetxt(filename, np.array([self.player, *self.board.reshape(9)]))
+
+    def load(self, filename):
+        arr = np.genfromtxt(filename)
+        self.player = arr[0]
+        self.board = arr[1:].reshape(3, 3)
+
     def play(self, row: int, column: int):
         if self.board[row, column] != 0:
             return

@@ -1,5 +1,6 @@
 from game.tic_tac_toe import TicTacToeGame
 import pytest
+from unittest.mock import MagicMock
 import random
 
 @pytest.fixture
@@ -91,9 +92,10 @@ X X X
     """.strip()
     assert (game.__str__() == expected)
 
-def test_print_board_2(capsys):
-    # This test does not use the "game" fixture, and so it sometimes
-    # fails because game could start with player 2
+def test_print_board_2(capsys, monkeypatch):
+    monkeypatch.setattr(random, 'randint', MagicMock())
+    random.randint.return_value = 90
+
     game = TicTacToeGame()
     game.play(0, 0)
     game.play(1, 1)
